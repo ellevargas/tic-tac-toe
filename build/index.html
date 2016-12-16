@@ -3,8 +3,47 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
   </head>
+
   <body>
+    <div id="application">
+      <header>
+        <h1>Tic-Tac-Toe</h1>
+        <section class="row names-scorecards">
+          <h3>Name</h3>
+          <div class="columns">
+            <label>
+              Name
+              <input type="text" name="name">
+            </label>
+            <label>
+              Phone
+              <input type="text" name="phone">
+            </label>
+            <label>
+              Email
+              <input type="text" name="email">
+            </label>
+            <button type="button" class="button btn-save">Save</button>
+            <button type="button" class="alert button btn-cancel">Cancel</button>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <ul id="contact-cards" class="row align-center"></ul>
+        <section id="contact-details"></section>
+      </main>
+    </div>
+
+
+
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
