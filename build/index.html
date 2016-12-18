@@ -14,9 +14,50 @@
     <div id="application">
       <header>
         <h1>Tic-Tac-Toe</h1>
-        <section class="row names-scorecards">
-          <h3>Name</h3>
-          <div class="columns">
+      </header>
+
+      <section class="row align-center player-names">
+        <div class="large-3 columns player1">
+          <h3>Player 1</h3>
+        </div>
+        <div class="large-6 columns"></div>
+        <div class="large-3 columns player2">
+          <h3>Player 2</h3>
+        </div>
+      </section>
+
+      <section class="row scorecards">
+        <div class="large-3 columns player1">
+          <h3>Win/Lose/Draw: </h3>
+        </div>
+        <div class="large-6 columns"></div>
+        <div class="large-3 columns player2">
+          <h3>Win/Lose/Draw: </h3>
+        </div>
+      </section>
+
+        <div class="row">
+          <table class="responsive" summary="9 by 9 tic-tac-toe board">
+            <tr>
+              <td id="0"></td>
+              <td id="1"></td>
+              <td id="2"></td>
+            </tr>
+            <tr>
+              <td id="3"></td>
+              <td id="4"></td>
+              <td id="5"></td>
+            </tr>
+            <tr>
+              <td id="6"></td>
+              <td id="7"></td>
+              <td id="8"></td>
+            </tr>
+          </table>
+        </div>
+
+
+          <!-- <div class="columns">
             <label>
               Name
               <input type="text" name="name">
@@ -31,9 +72,7 @@
             </label>
             <button type="button" class="button btn-save">Save</button>
             <button type="button" class="alert button btn-cancel">Cancel</button>
-          </div>
-        </section>
-      </header>
+          </div> -->
 
       <main>
         <ul id="contact-cards" class="row align-center"></ul>

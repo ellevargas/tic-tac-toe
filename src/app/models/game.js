@@ -3,7 +3,8 @@ import Player from 'player';
 
 const Game = Backbone.Model.extend({
 
-  initialize: function(options, options) {
+  initialize: function() {
+    var currentBoard = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
     var turnCounter = 0;
 
     this.player1 = new Player(player1, "X");
