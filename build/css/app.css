@@ -4,8 +4,12 @@ body {
   height: 100%;
 }
 
-h1, h3 {
-  font-family: 'Open Sans', sans-serif;
+h1 {
+  font-size: 3.5rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Courgette', cursive !important;
   font-weight: bold;
 }
 
@@ -15,11 +19,10 @@ application {
 
 header {
   text-align: center;
-  padding-top: 3%;
+  padding-top: 2%;
 }
 
 .player-names, .scorecards {
-  padding-bottom: 1%;
   text-align: center;
 }
 
