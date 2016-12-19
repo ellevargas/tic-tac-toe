@@ -8,14 +8,14 @@ import Application from 'app/models/application';
 const GameView = Backbone.View.extend({
   initialize: function() {
     console.log('GameView got initialized');
-
+    this.setElement($('#0'));
     // this.template = options.template;
 
     // this.detailsTemplate = _.template($('#tmpl-contact-details').html());
     // this.listElement = $('#contact-details');
 
     this.listenTo(this.model, "change", this.render);
-    console.log(">>> BREADCRUMBS: 0.5");
+    console.log(">>> BREADCRUMBS: 0.5 init GameView");
   },
 
   render: function() {
@@ -24,6 +24,8 @@ const GameView = Backbone.View.extend({
 
     // var html = this.template(this.model.toJSON())
     // this.$el.html(html);
+    console.log(">>> BREADCRUMBS: 1 render GameView");
+
     return this;
   },
 
