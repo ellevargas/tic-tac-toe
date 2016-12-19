@@ -7,15 +7,16 @@ import Application from 'app/models/application';
 
 const GameView = Backbone.View.extend({
   initialize: function() {
-    console.log('GameView got initialized');
-    this.setElement($('#0'));
+    // console.log('GameView got initialized');
+    // this.setElement($('#0'));
+
     // this.template = options.template;
 
-    // this.detailsTemplate = _.template($('#tmpl-contact-details').html());
-    // this.listElement = $('#contact-details');
+    // this.detailsTemplate = _.template($('.move').html());
 
     this.listenTo(this.model, "change", this.render);
-    console.log(">>> BREADCRUMBS: 0.5 init GameView");
+    // console.log(">>> BREADCRUMBS: 0.5 init GameView");
+    this.render();
   },
 
   render: function() {
@@ -24,28 +25,32 @@ const GameView = Backbone.View.extend({
 
     // var html = this.template(this.model.toJSON())
     // this.$el.html(html);
-    console.log(">>> BREADCRUMBS: 1 render GameView");
+    // console.log(">>> BREADCRUMBS: 1 render GameView");
 
     return this;
   },
 
   events: {
-    'click #0': 'markMove',
-    'click #0': 'onClick'
+    'click .move td': 'makeMove',
   },
 
-  onClick: function(event) {
-    this.trigger('select', this);
-    console.log("At least you're in onClick");
-    // We return false to tell jQuery not to run any more event handlers.
-    // Otherwise, it would run the 'click' event handler on RolodexView
-    // as well.
-    return false;
-  },
-
-  markMove: function(event) {
+  makeMove: function(event) {
     event.preventDefault();
-    console.log("You clicked a box, sweet!")
+    this.trigger('select', this);
+    // console.log("You clicked a box, sweet!")
+    // console.log("El = ");
+    // console.log(this.el);
+    console.log(this.model.attributes.activePlayer.letter);
+    console.log($(event.target).attr('id'));
+    // console.log(event.currentTarget.id);
+    this.model.play($(event.target).attr('id'));
+    // event.target.append();
+
+    this.listElement = $(event.target);
+
+    var letter = this.model.attributes.activePlayer.letter;
+
+    this.listElement.html(letter);
   }
 
 

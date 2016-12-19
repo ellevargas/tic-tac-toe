@@ -7,6 +7,9 @@ import Game from 'app/models/game';
 import GameView from 'app/views/gameview';
 
 $(document).ready(function(event) {
-  var newGame = new Game();
-  var gameView = new GameView({model: newGame});
+  // var newGame = new Game();
+  var gameView = new GameView({
+    model: new Game(),
+    el: '#application'
+  });
 });

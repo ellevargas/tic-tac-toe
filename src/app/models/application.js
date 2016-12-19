@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 
 import Game from 'app/models/game';
-import GameView from 'app/views/gameview'
+import GameView from 'app/views/gameview';
 
 const Application = Backbone.Model.extend({
 
