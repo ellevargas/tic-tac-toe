@@ -12,4 +12,12 @@ $(document).ready(function(event) {
     model: new Game(),
     el: '#application'
   });
+
+  gameView.render();
+
+  $('input').keypress(function(e){
+   if(e.keyCode == 13){
+      $(this).trigger('enter');
+   }
+  });
 });

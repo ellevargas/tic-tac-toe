@@ -26,6 +26,11 @@ header {
   text-align: center;
 }
 
+.scores h3 {
+  display: inline-block;
+  padding: 0 1%;
+}
+
 table {
   width: auto;
   display: flex;

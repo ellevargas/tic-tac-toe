@@ -25,8 +25,11 @@ const Game = Backbone.Model.extend({
       var board = this.get("currentBoard");
       board[move] = this.get("activePlayer").letter;
       this.set("currentBoard", board);
-      console.log("Marked with " + this.get("activePlayer").letter);
-      if (this.winCheck(this.get("currentBoard")) == false && this.get("turnCounter") < 9) {
+
+      console.log("Marked with " + this.get("activePlayer").name + " " +  this.get("activePlayer").letter);
+
+      if (this.winCheck(this.get("currentBoard")) == false &&
+       this.get("turnCounter") < 9) {
         this.turnHandler();
       };
       this.scoreKeeper();

@@ -31,7 +31,7 @@
           <h3>Win - Lose - Draw</h3>
         </div>
         <div class="large-3 columns">
-          <button type="button" class="button clear-board">Clear Board</button>
+          <button type="button" class="button clear-board">Play Again</button>
         </div>
         <div class="large-3 columns">
           <button type="button" class="alert button new-session">New Session</button>
@@ -43,54 +43,38 @@
 
       <section class="row scores">
         <div class="large-3 columns player1">
-          <h3>0 - 0 - 0</h3>
+          <h3 id="player1-win"></h3>
+          <h3>-</h3>
+          <h3 id="player1-lose"></h3>
+          <h3>-</h3>
+          <h3 id="player1-draw"></h3>
         </div>
         <div class="large-6 columns"></div>
         <div class="large-3 columns player2">
-          <h3>0 - 0 - 0</h3>
+          <h3 id="player2-win"></h3>
+          <h3>-</h3>
+          <h3 id="player2-lose"></h3>
+          <h3>-</h3>
+          <h3 id="player2-draw"></h3>
         </div>
       </section>
-
-      <!-- <section class="row scores">
-        <div class="large-1 columns">
-          <h3 id="player1-win">0</h3>
-        </div>
-        <div class="large-1 columns">
-          <h3 id="player1-lose">0</h3>
-        </div>
-        <div class="large-1 columns">
-          <h3 id="player1-draw">0</h3>
-        </div>
-
-        <div class="large-6 columns"></div>
-
-        <div class="large-1 columns">
-          <h3 id="player2-win">0</h3>
-        </div>
-        <div class="large-1 columns">
-          <h3 id="player2-lose">0</h3>
-        </div>
-        <div class="large-1 columns">
-          <h3 id="player2-draw">0</h3>
-        </div>
-      </section> -->
 
       <div>
         <table class="move" summary="9 by 9 tic-tac-toe board">
           <tr>
-            <td id="0"></td>
-            <td id="1"></td>
-            <td id="2"></td>
+            <td id="0" tabindex="0"></td>
+            <td id="1" tabindex="0"></td>
+            <td id="2" tabindex="0"></td>
           </tr>
           <tr>
-            <td id="3"></td>
-            <td id="4"></td>
-            <td id="5"></td>
+            <td id="3" tabindex="0"></td>
+            <td id="4" tabindex="0"></td>
+            <td id="5" tabindex="0"></td>
           </tr>
           <tr>
-            <td id="6"></td>
-            <td id="7"></td>
-            <td id="8"></td>
+            <td id="6" tabindex="0"></td>
+            <td id="7" tabindex="0"></td>
+            <td id="8" tabindex="0"></td>
           </tr>
         </table>
       </div>

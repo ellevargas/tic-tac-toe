@@ -13,8 +13,10 @@ const GameView = Backbone.View.extend({
     // this.detailsTemplate = _.template($('.move').html());
 
     this.listenTo(this.model, "change", this.render);
-    // console.log(">>> BREADCRUMBS: 0.5 init GameView");
-    this.render();
+    // this.render();
+
+    this.listenTo(this.model, "update", this.render);
+
   },
 
   render: function() {
@@ -23,13 +25,13 @@ const GameView = Backbone.View.extend({
 
     // var html = this.template(this.model.toJSON())
     // this.$el.html(html);
-    // console.log(">>> BREADCRUMBS: 1 render GameView");
 
     return this;
   },
 
   events: {
     'click .move td': 'makeMove',
+    'keypress .move td[tabindex]': 'makeMove',
     'click .clear-board': 'clearBoard',
     'click .new-session': 'newSession'
   },
@@ -37,11 +39,12 @@ const GameView = Backbone.View.extend({
   makeMove: function(event) {
     event.preventDefault();
     this.trigger('select', this);
+    console.log("You clicked " + $(event.target).attr('id'));
+
     // console.log("You clicked a box, sweet!")
     // console.log("El = ");
     // console.log(this.el);
-    console.log("The current letter is" + this.model.attributes.activePlayer.letter);
-    console.log($(event.target).attr('id'));
+    // console.log("The current letter is" + this.model.attributes.activePlayer.letter);
     // console.log(event.currentTarget.id);
     // event.target.append();
 
@@ -51,12 +54,11 @@ const GameView = Backbone.View.extend({
 
     this.listElement.html(letter);
     this.model.play($(event.target).attr('id'));
-
   },
 
   clearBoard: function(event) {
     console.log("I tried to clear the board!");
-    clearBoard();
+    this.model.clearBoard();
   },
 
   newSession: function(event) {
