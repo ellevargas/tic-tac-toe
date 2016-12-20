@@ -14,7 +14,7 @@ const Game = Backbone.Model.extend({
     this.set("inactivePlayer", this.get("player2"));
 
     this.set("scorecard",
-      {player1: { "Win":0, "Lose": 0, "Draw": 0}, 
+      {player1: { "Win":0, "Lose": 0, "Draw": 0},
       player2: { "Win":0, "Lose": 0, "Draw": 0}})
 
     // this.set("scorecard", { "Win":0, "Lose": 0, "Draw": 0});
@@ -84,7 +84,7 @@ const Game = Backbone.Model.extend({
     }
   },
 
-  newGame: function() {
+  clearBoard: function() {
     this.set("currentBoard", [" ", " ", " ", " ", " ", " ", " ", " ", " "]);
     this.set("turnCounter", 0);
     this.set("activePlayer", this.get("inactivePlayer"));

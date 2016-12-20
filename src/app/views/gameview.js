@@ -9,9 +9,7 @@ const GameView = Backbone.View.extend({
   initialize: function() {
     // console.log('GameView got initialized');
     // this.setElement($('#0'));
-
     // this.template = options.template;
-
     // this.detailsTemplate = _.template($('.move').html());
 
     this.listenTo(this.model, "change", this.render);
@@ -32,6 +30,8 @@ const GameView = Backbone.View.extend({
 
   events: {
     'click .move td': 'makeMove',
+    'click .clear-board': 'clearBoard',
+    'click .new-session': 'newSession'
   },
 
   makeMove: function(event) {
@@ -40,10 +40,9 @@ const GameView = Backbone.View.extend({
     // console.log("You clicked a box, sweet!")
     // console.log("El = ");
     // console.log(this.el);
-    console.log(this.model.attributes.activePlayer.letter);
+    console.log("The current letter is" + this.model.attributes.activePlayer.letter);
     console.log($(event.target).attr('id'));
     // console.log(event.currentTarget.id);
-    this.model.play($(event.target).attr('id'));
     // event.target.append();
 
     this.listElement = $(event.target);
@@ -51,6 +50,17 @@ const GameView = Backbone.View.extend({
     var letter = this.model.attributes.activePlayer.letter;
 
     this.listElement.html(letter);
+    this.model.play($(event.target).attr('id'));
+
+  },
+
+  clearBoard: function(event) {
+    console.log("I tried to clear the board!");
+    clearBoard();
+  },
+
+  newSession: function(event) {
+    console.log("I tried to make a new session!")
   }
 
 
