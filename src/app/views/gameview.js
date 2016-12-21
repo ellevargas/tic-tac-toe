@@ -7,11 +7,6 @@ import Application from 'app/models/application';
 
 const GameView = Backbone.View.extend({
   initialize: function() {
-    // console.log('GameView got initialized');
-    // this.setElement($('#0'));
-    // this.template = options.template;
-    // this.detailsTemplate = _.template($('.move').html());
-
     this.listElement = $('#player1-win');
     var win1 = this.model.attributes.player1.scorecard.win;
     this.listElement.html(win1);
@@ -37,19 +32,15 @@ const GameView = Backbone.View.extend({
     this.listElement.html(draw2);
 
     this.listenTo(this.model, "change", this.render);
-    this.listenTo(this.model, "update", this.render);
 
-    // this.render();
+    console.log("Active: " + this.model.attributes.activePlayer.name);
+    console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
+    console.log("turnCounter " + this.model.attributes.turnCounter);
   },
 
   render: function() {
     this.delegateEvents();
     // ^ reconnects the DOM event handlers
-
-
-    // var html = this.template(this.model.toJSON())
-    // this.$el.html(html);
-
     return this;
   },
 
@@ -63,9 +54,12 @@ const GameView = Backbone.View.extend({
 
   makeMove: function(event) {
     event.preventDefault();
-    // this.trigger('select', this);
-    console.log("You clicked " + $(event.target).attr('id'));
-    console.log(this.model.attributes.activePlayer);
+    // console.log("You clicked " + $(event.target).attr('id'));
+    // console.log(this.model.attributes.activePlayer);
+    // // console.log("You clicked " + $(event.target).attr('id'));
+    // console.log(this.model.attributes.inactivePlayer);
+
+    this.model.play($(event.target).attr('id'));
 
     this.listElement = $(event.target);
 
@@ -76,30 +70,40 @@ const GameView = Backbone.View.extend({
       this.listElement.html('<img id="O" alt="You have placed a snazzy beehive O!" src="/images/honeycomb-O.png" />');
     };
 
-    // this.model.attributes.currentBoard =
+    this.model.scoreKeeper();
+    // console.log("turnCounter " + this.model.attributes.turnCounter);
+    this.model.turnHandler();
+    console.log("End of play turnCounter " + this.model.attributes.turnCounter);
 
-    this.model.play($(event.target).attr('id'));
     // console.log(this.model.attributes.currentBoard);
   },
 
   clearBoard: function(event) {
-    // console.log("I tried to clear the board!");
-    // this.model.attributes.currentBoard = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
     // console.log(this.model.attributes.currentBoard);
-    // this.trigger('select', this);
+
+    // console.log("Active: " + this.model.attributes.activePlayer.name);
+    // console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
+
+    this.model.newGame();
 
     this.tableCell = $("td");
     this.tableCell.html('');
 
-    this.model.newGame();
-    // console.log(this.model.attributes.currentBoard);
-    // this.render();
+    // if (this.model.attributes.turnCounter > 0) {
+    //   var inactive = this.model.attributes.inactivePlayer;
+    //   var active = this.model.attributes.activePlayer;
+    //   this.model.attributes.activePlayer = inactive;
+    //   this.model.attributes.inactivePlayer = active;
+    // };
+
+    console.log("Active: " + this.model.attributes.activePlayer.name);
+    console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
+    console.log("Clear board turnCounter " + this.model.attributes.turnCounter);
   },
 
   newSession: function(event) {
     console.log("I tried to make a new session!")
   }
-
 
 });
 
