@@ -58,7 +58,7 @@ const Game = Backbone.Model.extend({
 
   turnHandler: function () {
     this.set("turnCounter", this.get("turnCounter") + 1);
-    if (this.get("turnCounter") % 2 == 0) {
+    // if (this.get("turnCounter") % 2 == 0) {
 
       var inactive = this.get("inactivePlayer");
       var active = this.get("activePlayer");
@@ -67,14 +67,14 @@ const Game = Backbone.Model.extend({
 
       // this.set("activePlayer", this.get("player1"));
       // this.set("inactivePlayer", this.get("player2"));
-    } else {
-      var inactive = this.get("inactivePlayer");
-      var active = this.get("activePlayer");
-      this.set("activePlayer", inactive);
-      this.set("inactivePlayer", active);
-      // this.set("activePlayer", this.get("player2"));
-      // this.set("inactivePlayer", this.get("player1"));
-    };
+    // } else {
+    //   var inactive = this.get("inactivePlayer");
+    //   var active = this.get("activePlayer");
+    //   this.set("activePlayer", inactive);
+    //   this.set("inactivePlayer", active);
+    //   // this.set("activePlayer", this.get("player2"));
+    //   // this.set("inactivePlayer", this.get("player1"));
+    // };
     return this.get("turnCounter");
   },
 

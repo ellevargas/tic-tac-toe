@@ -73,32 +73,31 @@ const GameView = Backbone.View.extend({
     this.model.scoreKeeper();
     // console.log("turnCounter " + this.model.attributes.turnCounter);
     this.model.turnHandler();
-    console.log("End of play turnCounter " + this.model.attributes.turnCounter);
+    console.log("End of play, turnCounter: " + this.model.attributes.turnCounter);
 
     // console.log(this.model.attributes.currentBoard);
   },
 
   clearBoard: function(event) {
-    // console.log(this.model.attributes.currentBoard);
+    console.log("Begin clear board turnCounter: " + this.model.attributes.turnCounter);
 
     // console.log("Active: " + this.model.attributes.activePlayer.name);
     // console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
+
+    if (this.model.attributes.turnCounter % 2 == 0) {
+      var inactive = this.model.attributes.inactivePlayer;
+      var active = this.model.attributes.activePlayer;
+      this.model.attributes.activePlayer = inactive;
+      this.model.attributes.inactivePlayer = active;
+    };
 
     this.model.newGame();
 
     this.tableCell = $("td");
     this.tableCell.html('');
 
-    // if (this.model.attributes.turnCounter > 0) {
-    //   var inactive = this.model.attributes.inactivePlayer;
-    //   var active = this.model.attributes.activePlayer;
-    //   this.model.attributes.activePlayer = inactive;
-    //   this.model.attributes.inactivePlayer = active;
-    // };
-
     console.log("Active: " + this.model.attributes.activePlayer.name);
     console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
-    console.log("Clear board turnCounter " + this.model.attributes.turnCounter);
   },
 
   newSession: function(event) {
