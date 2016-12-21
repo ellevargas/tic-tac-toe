@@ -47,6 +47,11 @@ td {
   height: 10rem;
 }
 
+.move td[tabindex] {
+  font-size: 60pt;
+  text-align: center;
+}
+
 table td:hover, table td:focus {
   background-color: #D3D1FC !important;
 }
