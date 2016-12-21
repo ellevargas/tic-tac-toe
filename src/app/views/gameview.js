@@ -79,13 +79,7 @@ const GameView = Backbone.View.extend({
   },
 
   clearBoard: function(event) {
-    // console.log(this.model.attributes.currentBoard);
-
-    // console.log("Active: " + this.model.attributes.activePlayer.name);
-    // console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
-
     this.model.newGame();
-
     this.tableCell = $("td");
     this.tableCell.html('');
 
