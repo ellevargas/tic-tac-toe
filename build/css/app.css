@@ -1,0 +1,57 @@
+body {
+  background-color: #fcf592;
+  width: auto;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Courgette', cursive !important;
+  font-weight: bold;
+}
+
+application {
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.player-names, .scorecards, .scores {
+  text-align: center;
+}
+
+.scores h3 {
+  display: inline-block;
+  padding: 0 1%;
+}
+
+table {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+table tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+td {
+  border: black 3pt solid;
+  width: 10rem;
+  height: 10rem;
+}
+
+.move td[tabindex] {
+  font-size: 60pt;
+  text-align: center;
+}
+
+table td:hover, table td:focus {
+  background-color: #D3D1FC !important;
+}

@@ -3,8 +3,86 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
   </head>
+
   <body>
+    <div id="application">
+      <header>
+        <h1>Tic-Tac-Buzz</h1>
+      </header>
+
+      <section class="row player-names">
+        <div class="large-3 columns player1">
+          <h2>Bumblebee</h2>
+        </div>
+        <div class="large-6 columns"></div>
+        <div class="large-3 columns player2">
+          <h2>Honeycomb</h2>
+        </div>
+      </section>
+
+      <section class="row scorecards">
+        <div class="large-3 columns player1">
+          <h3>Win - Lose - Draw</h3>
+        </div>
+
+        <div class="large-3 columns">
+          <button type="button" class="button btn-clear-board">Clear Board</button>
+        </div>
+        <div class="large-3 columns">
+          <button type="button" class="alert button btn-new-session">New Session</button>
+        </div>
+
+        <div class="large-3 columns player2">
+          <h3>Win - Lose - Draw</h3>
+        </div>
+      </section>
+
+      <section class="row scores">
+        <div class="large-3 columns player1">
+          <h3 id="player1-win"></h3>
+          <h3>-</h3>
+          <h3 id="player1-lose"></h3>
+          <h3>-</h3>
+          <h3 id="player1-draw"></h3>
+        </div>
+        <div class="large-6 columns"></div>
+        <div class="large-3 columns player2">
+          <h3 id="player2-win"></h3>
+          <h3>-</h3>
+          <h3 id="player2-lose"></h3>
+          <h3>-</h3>
+          <h3 id="player2-draw"></h3>
+        </div>
+      </section>
+
+      <div>
+        <table class="move" summary="9 by 9 tic-tac-toe board">
+          <tr>
+            <td id="0" tabindex="0"></td>
+            <td id="1" tabindex="0"></td>
+            <td id="2" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="3" tabindex="0"></td>
+            <td id="4" tabindex="0"></td>
+            <td id="5" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="6" tabindex="0"></td>
+            <td id="7" tabindex="0"></td>
+            <td id="8" tabindex="0"></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
