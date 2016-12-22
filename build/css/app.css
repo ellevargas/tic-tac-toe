@@ -9,7 +9,7 @@ h1 {
 }
 
 h1, h2, h3 {
-  font-family: 'Courgette', cursive !important;
+  font-family: 'Courgette', cursive;
   font-weight: bold;
 }
 
@@ -20,15 +20,26 @@ application {
 header {
   text-align: center;
   padding-top: 2%;
+  padding-bottom: 1%;
 }
 
-.player-names, .scorecards, .scores {
+.player-names {
   text-align: center;
+  padding: 2% 0;
 }
 
 .scores h3 {
   display: inline-block;
   padding: 0 1%;
+}
+
+.btn-clear-board {
+  border: black 3pt solid;
+  background-color: #c6a0ff;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Courgette', cursive;
 }
 
 table {
@@ -47,11 +58,6 @@ td {
   height: 10rem;
 }
 
-.move td[tabindex] {
-  font-size: 60pt;
-  text-align: center;
-}
-
 table td:hover, table td:focus {
-  background-color: #D3D1FC !important;
+  background-color: #c6a0ff;
 }
