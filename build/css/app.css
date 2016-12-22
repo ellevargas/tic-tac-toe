@@ -4,31 +4,37 @@ body {
   height: 100%;
 }
 
+.application {
+  text-align: center;
+}
+
 h1 {
   font-size: 3.5rem;
 }
 
 h1, h2, h3 {
-  font-family: 'Courgette', cursive !important;
+  font-family: 'Courgette', cursive;
   font-weight: bold;
-}
-
-application {
-  text-align: center;
 }
 
 header {
   text-align: center;
   padding-top: 2%;
+  padding-bottom: 1%;
 }
 
-.player-names, .scorecards, .scores {
+.player-names {
   text-align: center;
+  padding: 2% 0;
 }
 
-.scores h3 {
-  display: inline-block;
-  padding: 0 1%;
+.btn-clear-board {
+  border: black 3pt solid;
+  background-color: #c6a0ff;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Courgette', cursive;
 }
 
 table {
@@ -47,11 +53,25 @@ td {
   height: 10rem;
 }
 
-.move td[tabindex] {
-  font-size: 60pt;
-  text-align: center;
+table td:hover, table td:focus {
+  background-color: #c6a0ff;
 }
 
-table td:hover, table td:focus {
-  background-color: #D3D1FC !important;
+#bumblebee-winner-modal, #honeycomb-winner-modal {
+  background-color: white;
+  display: none;
+  z-index: 10;
+  position: fixed;
+  border: 3pt solid black;
+  border-radius: 20%;
+  text-align: center;
+  margin-left: 7%;
+}
+
+#honeycomb-winner-modal {
+  margin-left: 72%;
+}
+
+.modals h2 {
+  padding: 2%;
 }

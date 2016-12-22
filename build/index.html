@@ -17,47 +17,23 @@
       </header>
 
       <section class="row player-names">
-        <div class="large-3 columns player1">
+        <div class="large-3 columns" id="Bumblebee">
           <h2>Bumblebee</h2>
         </div>
-        <div class="large-6 columns"></div>
-        <div class="large-3 columns player2">
+        <div class="large-6 columns">
+          <button type="button" class="button btn-clear-board">Play Again!</button>
+        </div>
+        <div class="large-3 columns" id="Honeycomb">
           <h2>Honeycomb</h2>
         </div>
       </section>
 
-      <section class="row scorecards">
-        <div class="large-3 columns player1">
-          <h3>Win - Lose - Draw</h3>
+      <section class="modals">
+        <div id="bumblebee-winner-modal">
+          <h2>Bumblebee wins!</h2>
         </div>
-
-        <div class="large-3 columns">
-          <button type="button" class="button btn-clear-board">Clear Board</button>
-        </div>
-        <div class="large-3 columns">
-          <button type="button" class="alert button btn-new-session">New Session</button>
-        </div>
-
-        <div class="large-3 columns player2">
-          <h3>Win - Lose - Draw</h3>
-        </div>
-      </section>
-
-      <section class="row scores">
-        <div class="large-3 columns player1">
-          <h3 id="player1-win"></h3>
-          <h3>-</h3>
-          <h3 id="player1-lose"></h3>
-          <h3>-</h3>
-          <h3 id="player1-draw"></h3>
-        </div>
-        <div class="large-6 columns"></div>
-        <div class="large-3 columns player2">
-          <h3 id="player2-win"></h3>
-          <h3>-</h3>
-          <h3 id="player2-lose"></h3>
-          <h3>-</h3>
-          <h3 id="player2-draw"></h3>
+        <div id="honeycomb-winner-modal">
+          <h2>Honeycomb wins!</h2>
         </div>
       </section>
 

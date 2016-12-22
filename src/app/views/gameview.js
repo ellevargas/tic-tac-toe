@@ -7,35 +7,14 @@ import Application from 'app/models/application';
 
 const GameView = Backbone.View.extend({
   initialize: function() {
-    this.listElement = $('#player1-win');
-    var win1 = this.model.attributes.player1.scorecard.win;
-    this.listElement.html(win1);
+    // this.listElement = $('#player1-win');
+    // var win1 = this.model.attributes.player1.scorecard.win;
+    // this.listElement.html(win1);
 
-    this.listElement = $('#player1-lose');
-    var lose1 = this.model.attributes.player1.scorecard.lose;
-    this.listElement.html(lose1);
-
-    this.listElement = $('#player1-draw');
-    var draw1 = this.model.attributes.player1.scorecard.draw;
-    this.listElement.html(draw1);
-
-    this.listElement = $('#player2-win');
-    var win2 = this.model.attributes.player2.scorecard.win;
-    this.listElement.html(win2);
-
-    this.listElement = $('#player2-lose');
-    var lose2 = this.model.attributes.player2.scorecard.lose;
-    this.listElement.html(lose2);
-
-    this.listElement = $('#player2-draw');
-    var draw2 = this.model.attributes.player2.scorecard.draw;
-    this.listElement.html(draw2);
+    var whoseTurn = this.model.attributes.activePlayer.name;
+    $('#' + whoseTurn).css("text-decoration", "underline");
 
     this.listenTo(this.model, "change", this.render);
-
-    console.log("Active: " + this.model.attributes.activePlayer.name);
-    console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
-    console.log("turnCounter " + this.model.attributes.turnCounter);
   },
 
   render: function() {
@@ -49,17 +28,16 @@ const GameView = Backbone.View.extend({
     'keypress .move td[tabindex]': 'makeMove',
 
     'click .btn-clear-board': 'clearBoard',
-    'click .btn-new-session': 'newSession'
   },
 
   makeMove: function(event) {
     event.preventDefault();
-    // console.log("You clicked " + $(event.target).attr('id'));
     // console.log(this.model.attributes.activePlayer);
-    // // console.log("You clicked " + $(event.target).attr('id'));
-    // console.log(this.model.attributes.inactivePlayer);
 
     this.model.play($(event.target).attr('id'));
+
+    var whoseTurn = this.model.attributes.activePlayer.name;
+    $('#' + whoseTurn).css("text-decoration", "none");
 
     this.listElement = $(event.target);
 
@@ -67,42 +45,52 @@ const GameView = Backbone.View.extend({
     if (letter == "X") {
       this.listElement.html('<img id="X" alt="You have put a stylish bee X!" src="/images/bee-X.png" />');
     } else if (letter == "O") {
-      this.listElement.html('<img id="O" alt="You have placed a snazzy beehive O!" src="/images/honeycomb-O.png" />');
+      this.listElement.html('<img id="O" alt="You have placed a snazzy honeycomb O!" src="/images/honeycomb-O.png" />');
     };
 
-    this.model.scoreKeeper();
+    if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Bumblebee")  {
+      $('#bumblebee-winner-modal').show();
+    } else if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Honeycomb") {
+      $('#honeycomb-winner-modal').show();
+    }
+     else {
+       $('#bumblebee-winner-modal').hide();
+       $('#honeycomb-winner-modal').hide();
+    }
+
     // console.log("turnCounter " + this.model.attributes.turnCounter);
     this.model.turnHandler();
-    console.log("End of play turnCounter " + this.model.attributes.turnCounter);
-
-    // console.log(this.model.attributes.currentBoard);
+    var whoseTurn = this.model.attributes.activePlayer.name;
+    $('#' + whoseTurn).css("text-decoration", "underline");
+    // console.log("End of play, turnCounter: " + this.model.attributes.turnCounter);
   },
 
   clearBoard: function(event) {
-    // console.log(this.model.attributes.currentBoard);
+    // console.log("Begin clear board turnCounter: " + this.model.attributes.turnCounter);
 
-    // console.log("Active: " + this.model.attributes.activePlayer.name);
-    // console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
+    if (this.model.attributes.turnCounter % 2 == 0) {
+      var inactive = this.model.attributes.inactivePlayer;
+      var active = this.model.attributes.activePlayer;
+      this.model.attributes.activePlayer = inactive;
+      this.model.attributes.inactivePlayer = active;
+    };
 
     this.model.newGame();
+
+    $('#bumblebee-winner-modal').hide();
+    $('#honeycomb-winner-modal').hide();
+
+    var whoseTurn = this.model.attributes.activePlayer.name;
+    $('#' + whoseTurn).css("text-decoration", "underline");
+
+    var whoseTurn = this.model.attributes.inactivePlayer.name;
+    $('#' + whoseTurn).css("text-decoration", "none");
 
     this.tableCell = $("td");
     this.tableCell.html('');
 
-    // if (this.model.attributes.turnCounter > 0) {
-    //   var inactive = this.model.attributes.inactivePlayer;
-    //   var active = this.model.attributes.activePlayer;
-    //   this.model.attributes.activePlayer = inactive;
-    //   this.model.attributes.inactivePlayer = active;
-    // };
-
     console.log("Active: " + this.model.attributes.activePlayer.name);
     console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
-    console.log("Clear board turnCounter " + this.model.attributes.turnCounter);
-  },
-
-  newSession: function(event) {
-    console.log("I tried to make a new session!")
   }
 
 });
