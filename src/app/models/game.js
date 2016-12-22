@@ -13,6 +13,8 @@ const Game = Backbone.Model.extend({
 
     this.set("activePlayer", this.get("player1"));
     this.set("inactivePlayer", this.get("player2"));
+
+    // this.modal = $('#winner-modal');
   },
 
   play: function(move) {
