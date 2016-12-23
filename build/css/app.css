@@ -57,7 +57,11 @@ table td:hover, table td:focus {
   background-color: #c6a0ff;
 }
 
-#bumblebee-winner-modal, #honeycomb-winner-modal {
+.modals h2 {
+  padding: 2%;
+}
+
+#bumblebee-winner-modal, #honeycomb-winner-modal, #draw-bee, #draw-comb {
   background-color: white;
   display: none;
   z-index: 10;
@@ -66,12 +70,9 @@ table td:hover, table td:focus {
   border-radius: 20%;
   text-align: center;
   margin-left: 7%;
+  margin-top: 7%;
 }
 
-#honeycomb-winner-modal {
+#honeycomb-winner-modal, #draw-comb {
   margin-left: 72%;
-}
-
-.modals h2 {
-  padding: 2%;
 }
