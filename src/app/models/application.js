@@ -5,7 +5,20 @@ import GameView from 'app/views/gameview';
 
 const Application = Backbone.Model.extend({
 
-  // This model represents the overall application.
+  newGame: function() {
+    var gameView = new GameView({
+      model: new Game(),
+      el: '#application'
+    });
+    gameView.render();
+  }
+
+  // gameView.fetch();
+
+  // events: {
+  //   'click .btn-clear-board': 'clearBoard',
+  // }
+
 });
 
 export default Application;

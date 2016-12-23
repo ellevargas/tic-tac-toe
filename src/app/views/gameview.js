@@ -7,10 +7,6 @@ import Application from 'app/models/application';
 
 const GameView = Backbone.View.extend({
   initialize: function() {
-    // this.listElement = $('#player1-win');
-    // var win1 = this.model.attributes.player1.scorecard.win;
-    // this.listElement.html(win1);
-
     var whoseTurn = this.model.attributes.activePlayer.name;
     $('#' + whoseTurn).css("text-decoration", "underline");
 
@@ -19,7 +15,6 @@ const GameView = Backbone.View.extend({
 
   render: function() {
     this.delegateEvents();
-    // ^ reconnects the DOM event handlers
     return this;
   },
 
@@ -32,42 +27,52 @@ const GameView = Backbone.View.extend({
 
   makeMove: function(event) {
     event.preventDefault();
-    // console.log(this.model.attributes.activePlayer);
-
     this.model.play($(event.target).attr('id'));
 
     var whoseTurn = this.model.attributes.activePlayer.name;
     $('#' + whoseTurn).css("text-decoration", "none");
 
-    this.listElement = $(event.target);
+    this.moveCell = $(event.target);
 
     var letter = this.model.attributes.activePlayer.letter;
     if (letter == "X") {
-      this.listElement.html('<img id="X" alt="You have put a stylish bee X!" src="/images/bee-X.png" />');
+      this.moveCell.html('<img id="X" alt="You have put a stylish bee X!" src="/images/bee-X.png" />');
     } else if (letter == "O") {
-      this.listElement.html('<img id="O" alt="You have placed a snazzy honeycomb O!" src="/images/honeycomb-O.png" />');
+      this.moveCell.html('<img id="O" alt="You have placed a snazzy honeycomb O!" src="/images/honeycomb-O.png" />');
+    };
+
+    if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Bumblebee") {
+      var gameInfo = { "board": this.model.attributes.currentBoard, "players": ["Bumblebee-X", "Honeycomb-O"], "outcome": "X"};
+      this.model.save(gameInfo);
+    } else if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Honeycomb") {
+      var gameInfo = { "board": this.model.attributes.currentBoard, "players": ["Bumblebee-X", "Honeycomb-O"], "outcome": "O"};
+      this.model.save(gameInfo);
+    } else if (this.model.winCheck(this.model.attributes.currentBoard) == false && this.model.attributes.turnCounter == 8) {
+      var gameInfo = { "board": this.model.attributes.currentBoard, "players": ["Bumblebee-X", "Honeycomb-O"], "outcome": "draw"};
+      this.model.save(gameInfo);
     };
 
     if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Bumblebee")  {
       $('#bumblebee-winner-modal').show();
     } else if (this.model.winCheck(this.model.attributes.currentBoard) == true && this.model.attributes.activePlayer.name == "Honeycomb") {
       $('#honeycomb-winner-modal').show();
-    }
-     else {
-       $('#bumblebee-winner-modal').hide();
-       $('#honeycomb-winner-modal').hide();
+    } else if (this.model.winCheck(this.model.attributes.currentBoard) == false && this.model.attributes.turnCounter == 8) {
+      console.log(this.model.attributes.turnCounter);
+      $('#draw-bee').show();
+      $('#draw-comb').show();
+    } else {
+     $('#bumblebee-winner-modal').hide();
+     $('#honeycomb-winner-modal').hide();
+     $('#draw-bee').hide();
+     $('#draw-comb').hide();
     }
 
-    // console.log("turnCounter " + this.model.attributes.turnCounter);
     this.model.turnHandler();
     var whoseTurn = this.model.attributes.activePlayer.name;
     $('#' + whoseTurn).css("text-decoration", "underline");
-    // console.log("End of play, turnCounter: " + this.model.attributes.turnCounter);
   },
 
   clearBoard: function(event) {
-    // console.log("Begin clear board turnCounter: " + this.model.attributes.turnCounter);
-
     if (this.model.attributes.turnCounter % 2 == 0) {
       var inactive = this.model.attributes.inactivePlayer;
       var active = this.model.attributes.activePlayer;
@@ -79,6 +84,8 @@ const GameView = Backbone.View.extend({
 
     $('#bumblebee-winner-modal').hide();
     $('#honeycomb-winner-modal').hide();
+    $('#draw-bee').hide();
+    $('#draw-comb').hide();
 
     var whoseTurn = this.model.attributes.activePlayer.name;
     $('#' + whoseTurn).css("text-decoration", "underline");
@@ -88,9 +95,6 @@ const GameView = Backbone.View.extend({
 
     this.tableCell = $("td");
     this.tableCell.html('');
-
-    console.log("Active: " + this.model.attributes.activePlayer.name);
-    console.log("Inactive: " + this.model.attributes.inactivePlayer.name);
   }
 
 });

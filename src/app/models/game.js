@@ -1,8 +1,9 @@
 import Backbone from 'backbone';
 
 const Game = Backbone.Model.extend({
-
+  url: 'http://localhost:3000/api/v1/games',
   initialize: function() {
+
     this.set("currentBoard", [" ", " ", " ", " ", " ", " ", " ", " ", " "]);
     this.set("turnCounter", 0);
 
@@ -13,8 +14,6 @@ const Game = Backbone.Model.extend({
 
     this.set("activePlayer", this.get("player1"));
     this.set("inactivePlayer", this.get("player2"));
-
-    // this.modal = $('#winner-modal');
   },
 
   play: function(move) {
